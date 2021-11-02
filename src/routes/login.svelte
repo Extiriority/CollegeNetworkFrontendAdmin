@@ -4,7 +4,7 @@
   let email = "", password = "";
 
   const submit = async () => {
-    await fetch('http://localhost:8000/api/register', {
+    await fetch('http://localhost:8000/api/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       credentials: 'include',
