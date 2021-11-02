@@ -68,7 +68,7 @@
 
 <style>
     .center {
-        height: 93vh;
+        height: 95vh;
         display: grid;
         place-items: center;
         background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../resources/loginBackground.png");

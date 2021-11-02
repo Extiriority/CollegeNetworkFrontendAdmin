@@ -2,8 +2,8 @@
   import Fontys from "../resources/fontys.svg"
 </script>
 
-<header class="sticky bg-white px-8 py-4 border-b headerheight">
-  <div class="flex justify-between">
+<header class="sticky bg-white px-8 headerheight shadow-2xl">
+  <div class="flex justify-between headerheight">
     <a href="/" class="flex items-center">
       <img src={Fontys} alt="Logo" width="40" height="40"/>
       <div class="font-medium text-xl text-black pl-3.5">Fontys Network</div>
@@ -26,6 +26,6 @@
 
 <style>
   .headerheight{
-      min-height: 7vh;
+      min-height: 5vh;
   }
 </style>
