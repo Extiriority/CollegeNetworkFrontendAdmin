@@ -1,7 +1,7 @@
 <script>
   import { goto } from "$app/navigation";
 
-  let email = "", password = "";
+  let email, password;
 
   const submit = async () => {
     await fetch('http://localhost:8000/api/login', {

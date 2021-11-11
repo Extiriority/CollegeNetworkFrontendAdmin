@@ -1,5 +1,5 @@
 <script>
-    import {authenticated} from "../stores/auth";
+    import {authenticated} from '$lib/sessions/auth';
     import {goto} from "$app/navigation";
     import Fontys from "../resources/fontys.svg"
 
@@ -12,6 +12,7 @@
             headers: { 'Content-Type': 'application/json' },
             credentials: 'include',
         })
+        authenticated.set(false);
         await goto('/login')
     }
 </script>

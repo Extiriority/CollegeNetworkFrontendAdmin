@@ -30,5 +30,7 @@
 		"cssnano": "^5.0.8",
 		"tailwindcss": "^2.2.16"
 	},
-	"type": "module"
+	"type": "module",
+	"dependencies": {
+	}
 }

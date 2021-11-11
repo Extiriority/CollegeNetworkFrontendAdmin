@@ -1,9 +1,9 @@
 <script>
   import { goto } from "$app/navigation";
 
-  let name = "", email = "", password = "";
+  let name, email, password;
 
-  const submit = async () => {
+  const register = async () => {
     await fetch('http://localhost:8000/api/register',{
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
@@ -20,7 +20,7 @@
 
 <div class="center">
     <div class="max-w-md w-full space-y-8">
-        <form on:submit|preventDefault={submit} class="rounded-lg shadow-2xl p-10 pl-20 pr-20 bg-white">
+        <form on:submit|preventDefault={register} class="rounded-lg shadow-2xl p-10 pl-20 pr-20 bg-white">
             <h2 class="mt-6 text-3xl font-extrabold text-gray-900">
               Register
             </h2>
