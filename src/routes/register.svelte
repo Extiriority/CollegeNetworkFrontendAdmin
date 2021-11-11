@@ -1,16 +1,16 @@
 <script>
   import { goto } from "$app/navigation";
 
-  let name, email, password;
+  let firstName, email, password;
 
   const register = async () => {
     await fetch('http://localhost:8000/api/register',{
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
-        name,
-        email,
-        password
+          firstName,
+          email,
+          password
       })
     });
 
@@ -26,7 +26,7 @@
             </h2>
 
             <div class="relative mt-12">
-                <input bind:value={name}
+                <input bind:value={firstName}
                        type="text"
                        class="w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:border-purple-900 py-2 peer placeholder-transparent"
                        id="floatingName" placeholder="Name">
