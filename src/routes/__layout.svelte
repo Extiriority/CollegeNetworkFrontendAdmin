@@ -1,9 +1,9 @@
 <script>
 	import '../app.css';
-  import Header from "../components/Header.svelte";
+  import Header from "../components/Nav.svelte";
 </script>
 
 <Header />
-<main class="">
+<main class="text-center">
     <slot />
 </main>

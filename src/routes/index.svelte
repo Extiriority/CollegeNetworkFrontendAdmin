@@ -1,9 +1,10 @@
-
 <script>
     import {onMount} from 'svelte';
     import {authenticated} from '$lib/sessions/auth';
+
     let message
     let error
+
     onMount( async () => {
         error = undefined
         try {
