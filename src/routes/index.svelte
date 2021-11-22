@@ -22,7 +22,6 @@
             }
         } catch (err) {
             console.log(err)
-            message = '';
             error = 'An error occurred'
         }
     });
