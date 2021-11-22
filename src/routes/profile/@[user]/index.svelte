@@ -11,6 +11,7 @@
     let phoneNumber
     let gender
     let dateOfBirth
+
     authenticated.subscribe(a => auth = a);
 
     onMount( async () => {
