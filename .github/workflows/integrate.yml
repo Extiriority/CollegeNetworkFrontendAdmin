@@ -12,6 +12,7 @@ jobs:
         node: [ 16.13.0 ]
     steps:
       - uses: actions/checkout@v2
+        name: Checkout code
       - uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node }}
