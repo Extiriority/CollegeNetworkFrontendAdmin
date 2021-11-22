@@ -1,5 +1,5 @@
 <script>
-    import {authenticated} from "$lib/sessions/auth";
+    import {authenticated} from "$lib/shared/stores";
     import {onMount} from "svelte";
 
     let auth = false;

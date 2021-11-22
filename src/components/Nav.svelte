@@ -1,5 +1,5 @@
 <script>
-    import {authenticated} from '$lib/sessions/auth';
+    import {authenticated} from '$lib/shared/stores';
     import {goto} from "$app/navigation";
     import Fontys from "../resources/fontys.svg"
     import {onMount} from "svelte";
@@ -55,19 +55,19 @@
             {#if auth}
                 <ul class="flex font-medium text-xl text-black pl-3.5">
                     <li class="mx-2">
-                      <a class="hover:text-purple-500" href="/profile/@{name}">{name}</a>
+                      <a class="hover:text-purple-500" sveltekit:prefetch href="/profile/@{name}">{name}</a>
                     </li>
                     <li class="mx-2">
-                      <a class="hover:text-purple-500" href="/" on:click={logout}>Logout</a>
+                      <a class="hover:text-purple-500" sveltekit:prefetch href="/" on:click|preventDefault={logout}>Logout</a>
                     </li>
                 </ul>
             {:else }
                 <ul class="flex font-medium text-xl text-black pl-3.5">
                     <li class="mx-2">
-                        <a class="hover:text-purple-500" href="/login">Login</a>
+                        <a class="hover:text-purple-500" sveltekit:prefetch href="/login">Login</a>
                     </li>
                     <li class="mx-2">
-                        <a class="hover:text-purple-500" href="/register">Register</a>
+                        <a class="hover:text-purple-500" sveltekit:prefetch href="/register">Register</a>
                     </li>
                 </ul>
             {/if}

@@ -3,7 +3,7 @@
   import Header from "../components/Nav.svelte";
 </script>
 
-<Header />
+<Header/>
 <main class="text-center">
     <slot />
 </main>

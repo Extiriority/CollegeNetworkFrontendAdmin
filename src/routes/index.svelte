@@ -1,6 +1,6 @@
 <script>
     import {onMount} from 'svelte';
-    import {authenticated} from '$lib/sessions/auth';
+    import {authenticated} from '$lib/shared/stores';
 
     let message
     let error
