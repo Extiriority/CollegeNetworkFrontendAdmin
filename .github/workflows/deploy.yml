@@ -1,4 +1,4 @@
-name: Dockerhub Continuous Delivery
+name: Docker Continuous Delivery
 
 on:
   push:
