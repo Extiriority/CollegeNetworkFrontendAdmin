@@ -1,10 +1,10 @@
 # College Network Frontend
 <a href="(https://github.com/Extiriority/CollegeNetworkBackend"><img align="right" src="https://catalog.app.fhict.nl/images/menuGlobal.svg" width=27%></a>
 
-CollegeNetworkFrontend is the frontend repository of [College Network](https://github.com/Extiriority/CollegeNetworkBackend),
-a detailed description of College Network and its objectives can be found in
-[College Network](https://github.com/Extiriority/CollegeNetworkBackend) which is the API repository
-for College Network.
+CollegeNetworkFrontend is the frontend repository,
+a detailed description of CollegeNetwork and its goals can be found in
+[CollegeNetwork](https://github.com/Extiriority/CollegeNetworkBackend) which is the API repository
+for CollegeNetworkFrontend.
 
 ## Setup
 
@@ -22,7 +22,7 @@ npm run dev
 # or start the server and open the app in a new browser tab
 npm run dev -- --open
 ```
-The frontend can now be found at `http://localhost:3000` but will not work fully without
+The frontend can now be found at `localhost:3000` but will not work fully without
 also installing [College Network](https://github.com/Extiriority/CollegeNetworkBackend).
 
 ## Building
