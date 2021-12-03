@@ -23,7 +23,7 @@ npm run dev
 npm run dev -- --open
 ```
 The frontend can now be found at `localhost:3000` but will not work fully without
-also installing [College Network](https://github.com/Extiriority/CollegeNetworkBackend).
+also installing [CollegeNetwork](https://github.com/Extiriority/CollegeNetworkBackend).
 
 ## Building
 
