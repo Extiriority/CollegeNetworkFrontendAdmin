@@ -1,31 +1,32 @@
 <script>
     import {onMount} from 'svelte';
     import {authenticated} from '$lib/shared/stores';
+    import rest from "$lib/rest/index.ts";
 
+    const config = {
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        withCredentials: true
+    }
     let message
-    let error
+    let errorMsg
 
-    onMount( async () => {
-        error = undefined
-        try {
-            const response = await fetch('http://localhost:8000/api/user', {
-                headers: {'Content-Type': 'application/json'},
-                credentials: 'include',
-            });
-            if (response.ok) {
-                const content = await response.json();
+    onMount(async () => {
+        rest.get('user',
+            config
+        ).then(response => {
+            if (response.status === 200) {
+                const content = response.data;
                 message = `Hi ${content.firstName}`;
                 authenticated.set(true);
-            } else {
-                message = 'You are not logged in';
-                authenticated.set(false);
             }
-        } catch (err) {
-            console.log(err)
-            error = 'An error occurred'
-        }
+        }).catch(() => {
+            message = 'You are not logged in';
+            authenticated.set(false);
+        })
     });
 </script>
 
 {message}
-{#if error}<p>{error}</p>{/if}
+{#if errorMsg}<p>{errorMsg}</p>{/if}
