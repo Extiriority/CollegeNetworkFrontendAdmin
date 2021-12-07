@@ -1,22 +1,46 @@
 <script>
     import {authenticated} from "$lib/shared/stores";
     import {onMount} from "svelte";
+    import rest from "$lib/rest/index.ts";
 
+    const config = {
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        withCredentials: true
+    }
     let auth = false;
     let message
     let error
-
-    let id
-    let name
-    let email
-    let phoneNumber
-    let gender
-    let dateOfBirth
+    let id, name, email, phoneNumber, gender, dateOfBirth
 
     authenticated.subscribe(a => auth = a);
 
     onMount( async () => {
-        error = undefined
+        rest.get('user',
+        config
+        ).then(response => {
+            if (response.status === 200) {
+                const user = response.data
+
+                id = user.id
+                name = user.firstName +' '+ user.lastName
+                email = user.email
+                phoneNumber = user.phoneNumber
+                gender = user.gender
+                dateOfBirth = user.dateOfBirth
+
+                authenticated.set(true);
+            }
+        }).catch(err => {
+            if (err.response) {
+                console.log(err.response.status)
+                alert('Error')
+            }
+        })
+
+
+        /*error = undefined
         try {
             const response = await fetch('http://localhost:8000/api/user', {
                 headers: {'Content-Type': 'application/json'},
@@ -41,7 +65,7 @@
             console.log(err)
             message = '';
             error = 'An error occurred'
-        }
+        }*/
     });
 
 </script>

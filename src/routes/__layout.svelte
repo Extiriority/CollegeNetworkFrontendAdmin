@@ -1,6 +1,6 @@
 <script>
 	import '../app.css';
-  import Header from "../components/Nav.svelte";
+    import Header from "../components/Nav.svelte";
 </script>
 
 <Header/>

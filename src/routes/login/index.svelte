@@ -1,6 +1,8 @@
 <script>
     import {goto} from "$app/navigation";
     import rest from "$lib/rest/index.ts";
+    import {authenticated} from "$lib/shared/stores";
+
 
     const config = {
         headers: {
@@ -9,6 +11,9 @@
         withCredentials: true
     }
     let email, password;
+    let auth
+
+    authenticated.subscribe(a => auth = a);
 
     const submit = async () => {
         const json = JSON.stringify({email, password})
@@ -17,8 +22,8 @@
             config
         ).then(response => {
             if (response.status === 200)
+                authenticated.set(true);
                 goto('/')
-
         })
     }
 </script>
