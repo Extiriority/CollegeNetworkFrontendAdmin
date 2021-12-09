@@ -1,8 +1,6 @@
 <script>
-    import {goto} from "$app/navigation";
-    import rest from "$lib/rest/index.ts";
-    import {authenticated} from "$lib/shared/stores";
-
+    import rest from "../../helpers/rest/index.ts";
+    import {authenticated} from "../../helpers/shared/stores";
 
     const config = {
         headers: {
@@ -23,7 +21,7 @@
         ).then(response => {
             if (response.status === 200)
                 authenticated.set(true);
-                goto('/')
+                window.location = '/'
         })
     }
 </script>

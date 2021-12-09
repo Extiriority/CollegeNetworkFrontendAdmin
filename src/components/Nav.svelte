@@ -1,7 +1,5 @@
 <script>
-    import {authenticated} from '$lib/shared/stores';
-    import {goto} from "$app/navigation";
-    import Fontys from "../resources/fontys.svg"
+    import {authenticated} from '../helpers/shared/stores';
     import {onMount} from "svelte";
 
     let auth = false;
@@ -41,14 +39,14 @@
             credentials: 'include',
         })
         authenticated.set(false);
-        await goto('/login')
+        window.location = '/login'
     }
 </script>
 
 <header class="sticky bg-white py-3 px-8 shadow-2xl">
     <div class="flex justify-between">
         <a href="/" class="flex items-center">
-            <img src={Fontys} alt="Logo" width="40" height="40"/>
+            <img src={"/src/resources/fontys.svg"} alt="Logo" width="40" height="40"/>
             <div class="font-medium text-xl text-black pl-3.5">Fontys Network</div>
         </a>
         <nav class="flex items-center">

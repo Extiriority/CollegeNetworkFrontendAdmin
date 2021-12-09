@@ -1,21 +1,18 @@
 <script>
-  import { goto } from "$app/navigation";
-
   let firstName, email, password;
 
   const register = async () => {
-    await fetch('http://localhost:8000/api/register',{
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({
-          firstName,
-          email,
-          password
-      })
-    });
-
-    await goto('/login');
-  }
+      await fetch('http://localhost:8000/api/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+              firstName,
+              email,
+              password
+          })
+      });
+      window.location = '/login';
+  };
 </script>
 
 <div class="center">

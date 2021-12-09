@@ -1,7 +1,6 @@
 <script>
     import {onMount} from 'svelte';
-    import rest from "$lib/rest/index.ts";
-    import {goto} from "$app/navigation";
+    import rest from "../helpers/rest/index.ts";
 
     export let email
 
@@ -20,15 +19,14 @@
         ).then(response => {
             if (response.status === 200) {
                 const content = response.data;
-                message = `Hi ${content.firstName}`;
-                email = content.email
+                message = `Hi ${content.firstName} you are logged in with email: ${content.email}`;
             }
         }).catch(() => {
-            alert('You are not logged in');
-            goto('login')
+            message = 'You are not logged in';
+            window.location = '/login'
         })
     });
 </script>
 
-<h1 class="text-center">{message} you are logged in with email {email}</h1>
+<h1 class="text-center">{message}</h1>
 {#if errorMsg}<p>{errorMsg}</p>{/if}

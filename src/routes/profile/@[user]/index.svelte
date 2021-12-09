@@ -1,7 +1,7 @@
 <script>
-    import {authenticated} from "$lib/shared/stores";
+    import {authenticated} from "../../../helpers/shared/stores";
     import {onMount} from "svelte";
-    import rest from "$lib/rest/index.ts";
+    import rest from "../../../helpers/rest/index.ts";
 
     const config = {
         headers: {
