@@ -2,8 +2,6 @@
     import {onMount} from 'svelte';
     import rest from "../helpers/rest/index.ts";
 
-    export let email
-
     const config = {
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'

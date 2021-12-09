@@ -1,6 +1,6 @@
 <script>
-    import rest from "../../helpers/rest/index.ts";
-    import {authenticated} from "../../helpers/shared/stores";
+    import rest from "/src/helpers/rest/index.ts";
+    import {authenticated} from "/src/helpers/shared/stores";
 
     const config = {
         headers: {
@@ -74,6 +74,6 @@
         height: 95vh;
         display: grid;
         place-items: center;
-        background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../../resources/loginBackground.png");
+        background-image: url("src/resources/loginBackground.webp");
     }
 </style>
