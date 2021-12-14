@@ -1,4 +1,5 @@
 /// <reference types="cypress" />
+import { cy, Cypress, expect, it } from 'local-cypress'
 
 context('Cypress.Commands', () => {
   beforeEach(() => {
@@ -8,6 +9,7 @@ context('Cypress.Commands', () => {
   // https://on.cypress.io/custom-commands
 
   it('.add() - create a custom command', () => {
+    // @ts-ignore
     Cypress.Commands.add('console', {
       prevSubject: true,
     }, (subject, method) => {

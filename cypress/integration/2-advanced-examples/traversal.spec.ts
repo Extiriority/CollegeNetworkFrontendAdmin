@@ -1,4 +1,5 @@
 /// <reference types="cypress" />
+import { cy, it } from 'local-cypress'
 
 context('Traversal', () => {
   beforeEach(() => {

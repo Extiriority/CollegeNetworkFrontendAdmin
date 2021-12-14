@@ -1,4 +1,5 @@
 /// <reference types="cypress" />
+import { cy, Cypress, it } from 'local-cypress'
 
 context('Misc', () => {
   beforeEach(() => {

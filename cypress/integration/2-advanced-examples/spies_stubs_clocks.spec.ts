@@ -1,6 +1,7 @@
 /// <reference types="cypress" />
 // remove no check once Cypress.sinon is typed
 // https://github.com/cypress-io/cypress/issues/6720
+import { cy, Cypress, expect, it } from 'local-cypress'
 
 context('Spies, Stubs, and Clock', () => {
   it('cy.spy() - wrap a method in a spy', () => {

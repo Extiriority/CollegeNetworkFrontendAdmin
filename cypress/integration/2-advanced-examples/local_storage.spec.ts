@@ -1,4 +1,5 @@
 /// <reference types="cypress" />
+import { cy, expect, it } from 'local-cypress'
 
 context('Local Storage', () => {
   beforeEach(() => {
