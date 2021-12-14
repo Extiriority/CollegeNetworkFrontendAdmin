@@ -3,4 +3,9 @@ node_modules
 /build
 /.svelte-kit
 /package
-/coverage
+/coverage/
+/coverage/lcov-report/
+/coverage/lcov-report/src/
+/coverage/lcov-report/src/helpers/rest/
+/coverage/lcov-report/src/helpers/shared/
+/coverage/lcov-report/src/components/
