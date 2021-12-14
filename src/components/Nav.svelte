@@ -1,6 +1,8 @@
 <script>
-    import {authenticated} from '../helpers/shared/stores';
-    import {onMount} from "svelte";
+    import { authenticated } from '../helpers/shared/stores';
+    import { onMount } from "svelte";
+    import rest from '../helpers/rest/index.ts';
+    import { baseConfig } from '../helpers/shared/configs.ts';
 
     let auth = false;
     let message
@@ -9,27 +11,18 @@
     authenticated.subscribe(a => auth = a);
 
     onMount( async () => {
-        error = undefined
-        try {
-            const response = await fetch('http://localhost:8000/api/user', {
-                headers: {'Content-Type': 'application/json'},
-                credentials: 'include',
-            });
-            if (response.ok) {
-                const user = await response.json();
-                console.log(user)
-                name = user.firstName
+        rest.get('user',
+            baseConfig
+        ).then(response => {
+            if (response.status === 200) {
+                const content = response.data;
+                name = content.firstName
                 message = `Hi ${name}`;
                 authenticated.set(true);
-            } else {
-                message = 'You are not logged in';
-                authenticated.set(false);
             }
-        } catch (err) {
-            console.log(err)
-            message = '';
-            error = 'An error occurred'
-        }
+        }).catch(() => {
+            console.log('you are not logged in')
+        })
     });
 
     const logout = async () => {
@@ -43,7 +36,7 @@
     }
 </script>
 
-<header class="sticky bg-white py-3 px-8 shadow-2xl">
+<header class="sticky bg-white py-3 px-8 shadow-2xl shadow-indigo-500/50">
     <div class="flex justify-between">
         <a href="/" class="flex items-center">
             <img src={"/src/resources/fontys.svg"} alt="Logo" width="40" height="40"/>

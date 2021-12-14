@@ -5,5 +5,5 @@
 
 <Header/>
 <main class="text-center">
-    <slot />
+    <slot/>
 </main>

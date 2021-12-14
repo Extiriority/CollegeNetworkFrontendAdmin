@@ -1,16 +1,15 @@
 <script>
+  import rest from '/src/helpers/rest/index.ts';
+  import { authConfig } from '/src/helpers/shared/configs.ts';
+
   let firstName, email, password;
 
   const register = async () => {
-      await fetch('http://localhost:8000/api/register', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-              firstName,
-              email,
-              password
-          })
-      });
+      const json = JSON.stringify({firstName, email, password})
+      await rest.post('register',
+            json,
+            authConfig
+      )
       window.location = '/login';
   };
 </script>

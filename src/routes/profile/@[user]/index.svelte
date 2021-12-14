@@ -1,14 +1,9 @@
 <script>
-    import {authenticated} from "../../../helpers/shared/stores";
-    import {onMount} from "svelte";
-    import rest from "../../../helpers/rest/index.ts";
+    import { authenticated } from '/src/helpers/shared/stores';
+    import { onMount } from "svelte";
+    import rest from '/src/helpers/rest/index.ts';
+		import { baseConfig } from '/src/helpers/shared/configs.ts';
 
-    const config = {
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        withCredentials: true
-    }
     let auth = false;
     let message
     let error
@@ -18,7 +13,7 @@
 
     onMount( async () => {
         rest.get('user',
-        config
+        baseConfig
         ).then(response => {
             if (response.status === 200) {
                 const user = response.data
@@ -38,34 +33,6 @@
                 alert('Error')
             }
         })
-
-
-        /*error = undefined
-        try {
-            const response = await fetch('http://localhost:8000/api/user', {
-                headers: {'Content-Type': 'application/json'},
-                credentials: 'include',
-            });
-            if (response.ok) {
-                const user = await response.json();
-
-                id = user.id
-                name = user.firstName +' '+ user.lastName
-                email = user.email
-                phoneNumber = user.phoneNumber
-                gender = user.gender
-                dateOfBirth = user.dateOfBirth
-
-                authenticated.set(true);
-            } else {
-                message = 'You are not logged in';
-                authenticated.set(false);
-            }
-        } catch (err) {
-            console.log(err)
-            message = '';
-            error = 'An error occurred'
-        }*/
     });
 
 </script>

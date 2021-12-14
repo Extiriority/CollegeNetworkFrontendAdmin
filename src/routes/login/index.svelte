@@ -1,23 +1,18 @@
 <script>
     import rest from "/src/helpers/rest/index.ts";
-    import {authenticated} from "/src/helpers/shared/stores";
+    import { authenticated } from "/src/helpers/shared/stores";
+    import { authConfig } from '/src/helpers/shared/configs.ts';
 
-    const config = {
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        withCredentials: true
-    }
     let email, password;
     let auth
 
     authenticated.subscribe(a => auth = a);
 
-    const submit = async () => {
+    const login = async () => {
         const json = JSON.stringify({email, password})
         await rest.post('login',
             json,
-            config
+            authConfig
         ).then(response => {
             if (response.status === 200)
                 authenticated.set(true);
@@ -28,7 +23,7 @@
 
 <div class="center">
     <div class="max-w-md w-full space-y-8">
-        <form on:submit|preventDefault={submit} class="rounded-lg shadow-2xl p-10 pl-20 pr-20 bg-white">
+        <form on:submit|preventDefault={login} class="rounded-lg shadow-2xl p-10 pl-20 pr-20 bg-white">
             <h2 class="mt-6 text-3xl font-extrabold text-gray-900">
                 Sign in
             </h2>

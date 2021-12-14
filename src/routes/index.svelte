@@ -1,19 +1,14 @@
 <script>
     import {onMount} from 'svelte';
-    import rest from "../helpers/rest/index.ts";
+    import rest from '../helpers/rest/index.ts';
+		import { baseConfig } from '../helpers/shared/configs.ts';
 
-    const config = {
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        withCredentials: true
-    }
     let message
     let errorMsg
 
     onMount(async () => {
         rest.get('user',
-            config
+            baseConfig
         ).then(response => {
             if (response.status === 200) {
                 const content = response.data;
