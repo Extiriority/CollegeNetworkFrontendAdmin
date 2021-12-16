@@ -1,13 +1,18 @@
-export const authConfig = {
+const authConfig = {
 	headers: {
 		'Content-Type': 'application/json'
 	},
 	withCredentials: true
 }
 
-export const baseConfig = {
+const baseConfig = {
 	headers: {
 		'content-Type': 'application/x-www-form-urlencoded'
 	},
 	withCredentials: true
+}
+
+export {
+	authConfig,
+	baseConfig
 }

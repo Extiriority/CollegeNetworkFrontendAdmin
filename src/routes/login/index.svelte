@@ -3,8 +3,9 @@
     import { authenticated } from "/src/helpers/shared/stores";
     import { authConfig } from '/src/helpers/shared/configs.ts';
 
-    let email, password;
+    let email = null, password;
     let auth
+    let validation
 
     authenticated.subscribe(a => auth = a);
 
@@ -17,6 +18,9 @@
             if (response.status === 200)
                 authenticated.set(true);
                 window.location = '/'
+        }).catch(err => {
+            console.log(err)
+            validation = true
         })
     }
 </script>
@@ -48,18 +52,26 @@
                        peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2
                        peer-focus:-top-3 peer-focus:text-gray-600 peer-focus:text-sm">Password</label>
             </div>
-
-            <div class="font-medium py-4">
+            <div>
+                {#if validation}
+                    <span class='text-red-900'>
+                        email or password is wrong
+                    </span>
+                {/if}
+            </div>
+            <div class="font-medium py-4 pr-40">
                 <label>
                     <input type="checkbox"
+                           data-cy='checkbox'
                            value="remember-me"> Remember me
                 </label>
             </div>
             <button
                     class="w-full py-2 px-4 bg-purple-800 text-white font-semibold rounded-lg shadow-md hover:bg-purple-900 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-opacity-75"
+                    data-cy='submit'
                     type="submit">Sign in
             </button>
-            <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
+            <p class="mt-5 mb-3 text-muted">&copy; 2021</p>
         </form>
     </div>
 </div>
