@@ -17,7 +17,7 @@
         ).then(response => {
             if (response.status === 200) {
                 const user = response.data
-
+								console.log(user)
                 id = user.id
                 name = user.firstName +' '+ user.lastName
                 email = user.email
@@ -36,10 +36,26 @@
     });
 
 </script>
+<div class='center'>
+	<div class="max-w-md w-full space-y-8 rounded-lg shadow-2xl shadow-indigo-500/50 p-10 pl-20 pr-20 bg-white">
+		<div>
+			<h2 class="mt-6 text-3xl font-extrabold text-gray-900">
+				Info
+			</h2>
+			<p>User ID: {id}</p>
+			<p>Name: {name}</p>
+			<p>Contact: {email}</p>
+			<p>Mobile phone: {phoneNumber}</p>
+			<p>Gender: {gender}</p>
+			<p>Birth date: {dateOfBirth}</p>
+		</div>
+	</div>
+</div>
 
-<h3>{id}</h3>
-<h3>{name}</h3>
-<h3>{email}</h3>
-<h3>{phoneNumber}</h3>
-<h3>{gender}</h3>
-<h3>{dateOfBirth}</h3>
+<style>
+    .center {
+        height: 95vh;
+        display: grid;
+        place-items: center;
+    }
+</style>
