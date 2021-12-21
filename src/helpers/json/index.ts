@@ -1,9 +1,10 @@
-export interface Lol {
+export interface User {
     id: bigint,
     firstName: string,
     lastName: string,
     email: string,
     phoneNumber?: string,
     gender?: string,
-    dateOfBirth?: Date
+    dateOfBirth?: Date,
+    password?: string,
 }

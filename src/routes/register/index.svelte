@@ -1,17 +1,17 @@
 <script>
-  import rest from '/src/helpers/rest/index.ts';
+    import rest from '/src/helpers/rest/index.ts';
   import { authConfig } from '/src/helpers/shared/configs.ts';
 
-  let firstName, lastName, email, password;
+    let firstName, lastName, email, password;
 
-  const register = async () => {
-      const json = JSON.stringify({firstName, lastName, email, password})
-      await rest.post('register',
+    const register = async () => {
+        const json = JSON.stringify({firstName, lastName, email, password})
+        await rest.post('register',
             json,
             authConfig
-      )
-      window.location = '/login';
-  };
+        )
+        window.location = '/login';
+    };
 </script>
 
 <div class="center">
