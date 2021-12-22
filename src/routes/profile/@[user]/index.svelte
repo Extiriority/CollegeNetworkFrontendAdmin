@@ -1,56 +1,59 @@
 <script>
-	import { authenticated } from '/src/helpers/shared/stores';
-	import { onMount } from 'svelte';
-	import rest from '/src/helpers/rest/index.ts';
-	import { baseConfig } from '/src/helpers/shared/configs.ts';
+		import { authenticated } from '/src/helpers/shared/stores';
+		import { onMount } from 'svelte';
+		import rest from '/src/helpers/rest/index.ts';
+		import { authConfig, baseConfig } from '/src/helpers/shared/configs.ts';
 
 		let auth = false;
     let message
     let error
     let id, firstName, lastName, email, phoneNumber, gender, dateOfBirth, password
 
-		let formatDate
 
-	authenticated.subscribe(a => auth = a);
+		authenticated.subscribe(a => auth = a);
 
-	onMount(async () => {
-		rest.get('user',
-			baseConfig
-		).then(response => {
-			if (response.status === 200) {
-				const user = response.data;
-				console.log(user);
-				id = user.id;
-				firstName = user.firstName;
-				lastName = user.lastName;
-				email = user.email;
-				phoneNumber = user.phoneNumber;
-				gender = user.gender;
-				dateOfBirth = new Date(user.dateOfBirth).toLocaleDateString();
-				formatDate = dateOfBirth.split("-").reverse().join("-");
+		onMount(async () => {
+				rest.get('user',
+						baseConfig
+				).then(response => {
+						if (response.status === 200) {
+								const user = response.data;
+								console.log(user);
+								id = user.id;
+								firstName = user.firstName;
+								lastName = user.lastName;
+								email = user.email;
+								phoneNumber = user.phoneNumber;
+								gender = user.gender;
+								dateOfBirth = new Date(user.dateOfBirth).toISOString().substring(0, 10);
 
-				authenticated.set(true);
-			}
-		}).catch(err => {
-			if (err.response) {
-				console.log(err.response.status);
-				alert('Error');
-			}
+								authenticated.set(true);
+						}
+				}).catch(err => {
+						if (err.response) {
+								console.log(err.response.status);
+								alert('Error');
+						}
+				});
 		});
-	});
 
-	const edit = async () => {
-		const json = JSON.stringify({ id, firstName, lastName, email, phoneNumber, gender, dateOfBirth, password });
-		await rest.put('update_user',
-			json,
-			baseConfig
-		);
-	};
+		const edit = async () => {
+				const json = JSON.stringify({ id, firstName, lastName, email, phoneNumber, gender, dateOfBirth, password });
+				await rest.put('update_user',
+						json,
+						authConfig
+				).catch(err => {
+						if (err.response) {
+								console.log(err.response.status);
+								console.log(json)
+						}
+				});
+		};
 </script>
 
 <div class="center">
 		<div class='flex rounded-lg shadow-2xl shadow-indigo-500/50 p-10 pl-20 pr-20 bg-white'>
-				<form on:submit={edit}>
+				<form on:submit|preventDefault={edit}>
 						<h2 class='text-3xl font-extrabold text-gray-900 pb-4'>
 								Edit profile
 						</h2>
@@ -66,7 +69,7 @@
 									  <label for="floatingFirstName"
 													 class="absolute left-0 top-0 -top-3.5 text-gray-600 text-base transition-all
 													 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2
-													 peer-focus:-top-3 peer-focus:text-gray-600 peer-focus:text-sm">firstname</label>
+													 peer-focus:-top-3 peer-focus:text-gray-600 peer-focus:text-sm">First name</label>
 								</div>
 								<div class='relative'>
 										<input bind:value={lastName}
@@ -88,7 +91,7 @@
 								<label for="floatingEmail"
 											 class="absolute left-0 top-0 -top-3.5 text-gray-600 text-base transition-all
 											 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2
-											 peer-focus:-top-3 peer-focus:text-gray-600 peer-focus:text-sm">Email address</label>
+											 peer-focus:-top-3 peer-focus:text-gray-600 peer-focus:text-sm">Email</label>
 						</div>
 						<div class='relative pb-4'>
 								<input bind:value={phoneNumber}
@@ -99,11 +102,11 @@
 								<label for="floatingPhone"
 											 class="absolute left-0 top-0 -top-3.5 text-gray-600 text-base transition-all
 												 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2
-												 peer-focus:-top-3 peer-focus:text-gray-600 peer-focus:text-sm">Phone number</label>
+												 peer-focus:-top-3 peer-focus:text-gray-600 peer-focus:text-sm">Mobile number</label>
 						</div>
-								<div class='pb-6'>
-										<label class='inline-block mb-4 text-xl text-gray-900'
-										>Select Gender</label>
+								<div class='relative py-6'>
+										<h1 class='absolute inline-block mb-4 text-gray-700 -top-1 left-0'
+										>Gender</h1>
 										<div class='flex justify-between'>
 												<div class='flex items-center'>
 														<input
@@ -111,7 +114,7 @@
 																	type='radio'
 																	class='w-4 h-4 accent-blue-500 border border-gray-300 rounded-full outline-none cursor-pointer'
 																	id='male'
-																	value='male'
+																	value='Male'
 														/><label class='ml-2 text-sm' for='male'>Male</label>
 												</div>
 												<div class='flex items-center'>
@@ -120,7 +123,7 @@
 																	type='radio'
 																	class='w-4 h-4 accent-pink-500 border border-gray-300 rounded-full outline-none cursor-pointer'
 																	id='female'
-																	value='female'
+																	value='Female'
 														/><label class='ml-2 text-sm' for='female'>Female</label>
 												</div>
 												<div class='flex items-center'>
@@ -129,7 +132,7 @@
 																	type='radio'
 																	class='w-4 h-4 accent-gray-500 border border-gray-300 rounded-full outline-none cursor-pointer'
 																	id='other'
-																	value='other'
+																	value='Other'
 														/><label class='ml-2 text-sm' for='other'>Other</label>
 												</div>
 												<div class='flex items-center'>
@@ -137,22 +140,23 @@
 																	name='gender'
 																	type='radio'
 																	class='w-4 h-4 accent-red-500 border border-gray-300 rounded-full outline-none cursor-pointer'
-																	id='privacy'
-																	value='other'
-														/><label class='ml-2 text-sm' for='privacy'>Prefer not to say</label>
+																	checked='checked'
+																	id='private'
+																	value='Private'
+														/><label class='ml-2 text-sm' for='private'>Prefer not to say</label>
 												</div>
 										</div>
 								</div>
 								<div class='relative'>
-										<input value={formatDate}
+										<input value={dateOfBirth}
 													 type='date'
 													 class="w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:border-purple-900 pt-3 pb-1 peer placeholder-transparent"
 											     id="floatingDate"
 											     placeholder="Mobile phone number">
-											<label for="floatingDate"
-														 class="absolute left-0 top-0 -top-3.5 text-gray-600 text-base transition-all
-														 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2
-														 peer-focus:-top-3 peer-focus:text-gray-600 peer-focus:text-sm">Birth date</label>
+										<label for="floatingDate"
+													 class="absolute left-0 top-0 -top-3.5 text-gray-600 text-base transition-all
+													 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2
+													 peer-focus:-top-3 peer-focus:text-gray-600 peer-focus:text-sm">Birthday</label>
 									</div>
 								<div class="relative mt-6">
 										<input bind:value={password}

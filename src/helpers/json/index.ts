@@ -1,10 +1,11 @@
-export interface User {
-    id: bigint,
-    firstName: string,
-    lastName: string,
-    email: string,
-    phoneNumber?: string,
-    gender?: string,
-    dateOfBirth?: Date,
-    password?: string,
+export class user {
+    static id: bigint;
+    static firstName: string;
+    static lastName: string;
+    static email: string;
+    static phoneNumber: string;
+    static gender: string;
+    static dateOfBirth: string;
+    static password: string;
+
 }
