@@ -161,12 +161,3 @@
 				</form>
 		</div>
 </div>
-
-<style>
-    .center {
-        height: 95vh;
-        display: grid;
-        place-items: center;
-        background-image: url("/src/resources/loginBackground.webp");
-    }
-</style>

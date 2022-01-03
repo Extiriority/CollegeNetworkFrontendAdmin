@@ -36,7 +36,7 @@
     }
 </script>
 
-<header class="sticky bg-white py-3 px-8 shadow-2xl shadow-indigo-500/50">
+<header class="w-full top-0 z-40 bg-white py-3 px-8 shadow-2xl shadow-indigo-500/50">
     <div class="flex justify-between">
         <a href="/" class="flex items-center">
             <img src={"/src/resources/fontys.svg"} alt="Logo" width="40" height="40"/>

@@ -3,7 +3,9 @@
     import Header from "../components/Nav.svelte";
 </script>
 
-<Header/>
-<main class="text-center">
-    <slot/>
-</main>
+<div class='flex flex-col h-screen'>
+    <Header/>
+    <main class="h-full text-center">
+        <slot/>
+    </main>
+</div>

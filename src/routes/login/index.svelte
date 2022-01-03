@@ -25,7 +25,8 @@
     }
 </script>
 
-<div class="center">
+
+<div class="h-full grid grid-cols-1 place-items-center bg-[url('src/resources/loginBackground.webp')]">
     <div class="max-w-md w-full space-y-8">
         <form on:submit|preventDefault={login} class="rounded-lg shadow-2xl p-10 pl-20 pr-20 bg-white">
             <h2 class="mt-6 text-3xl font-extrabold text-gray-900">
@@ -71,16 +72,7 @@
                     data-cy='submit'
                     type="submit">Sign in
             </button>
-            <p class="mt-5 mb-3 text-muted">&copy; 2021</p>
+            <p class="mt-5 mb-3 text-muted">&copy; 2021 - {new Date().getFullYear()}</p>
         </form>
     </div>
 </div>
-
-<style>
-    .center {
-        height: 95vh;
-        display: grid;
-        place-items: center;
-        background-image: url("src/resources/loginBackground.webp");
-    }
-</style>
