@@ -40,7 +40,6 @@
     <div class="flex justify-between">
         <a href="/" class="flex items-center">
             <img src={"/src/resources/fontys.svg"} alt="Logo" width="40" height="40"/>
-            <div class="font-medium text-xl text-black pl-3.5">Fontys Network</div>
         </a>
         <nav class="flex items-center">
             {#if auth}

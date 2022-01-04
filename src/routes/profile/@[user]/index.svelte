@@ -58,7 +58,7 @@
 		};
 </script>
 
-<div class="center">
+<div class="h-full grid grid-cols-1 place-items-center bg-[url('src/resources/loginBackground.webp')]">
 		<div class='flex rounded-lg shadow-2xl shadow-indigo-500/50 p-10 pl-20 pr-20 bg-white'>
 				<form on:submit|preventDefault={edit}>
 						<h2 class='text-3xl font-extrabold text-gray-900 pb-4'>
