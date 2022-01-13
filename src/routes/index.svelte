@@ -2,8 +2,12 @@
     import {onMount} from 'svelte';
     import rest from '../helpers/rest/index.ts';
 		import { baseConfig } from '../helpers/shared/configs.ts';
+		import Chat from "../components/Chat.svelte";
+		import Search from "../components/Search.svelte";
+		import Blog from "../components/Blog.svelte";
 
-    let message
+		let firstName
+		let id
     let errorMsg
 
     onMount(async () => {
@@ -12,14 +16,22 @@
         ).then(response => {
             if (response.status === 200) {
                 const content = response.data;
-                message = `Hi ${content.firstName} you are logged in with email: ${content.email}`;
+								console.log(content)
+								firstName = content.firstName
+								id = content.id
             }
         }).catch(() => {
-            message = 'You are not logged in';
+            console.log('You are not logged in');
             window.location = '/login'
         })
     });
 </script>
 
-<h1 class="text-center">{message}</h1>
-{#if errorMsg}<p>{errorMsg}</p>{/if}
+
+<div class="flex h-full place-content-center bg-[url('src/resources/loginBackground.webp')]">
+			<div class='flex pt-20 fixed'>
+					<Chat sender={firstName}/>
+					<Blog userId={id}/>
+					<Search/>
+			</div>
+</div>

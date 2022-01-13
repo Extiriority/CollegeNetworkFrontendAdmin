@@ -42,13 +42,13 @@
 				});
 		});
 
-		const edit = async () => {
+		const update = async () => {
 				const json = JSON.stringify({ id, firstName, lastName, email, phoneNumber, gender, dateOfBirth, password });
 				await rest.put('update_user',
 						json,
 						authConfig
 				).then(() => {
-					save = true
+						save = true
 				}).catch(err => {
 						if (err.response) {
 								console.log(err.response.status);
@@ -60,7 +60,7 @@
 
 <div class="h-full grid grid-cols-1 place-items-center bg-[url('src/resources/loginBackground.webp')]">
 		<div class='flex rounded-lg shadow-2xl shadow-indigo-500/50 p-10 pl-20 pr-20 bg-white'>
-				<form on:submit|preventDefault={edit}>
+				<form on:submit|preventDefault={update}>
 						<h2 class='text-3xl font-extrabold text-gray-900 pb-4'>
 								Edit profile
 						</h2>
@@ -154,7 +154,7 @@
 								type='submit'>Change info
 						</button>
 						{#if save} <!--TODO: make this down right-->
-								 <div class='text-green-700'>
+								 <div class='text-green-700 text-center'>
 									 	Changes has been saved
 								 </div>
 						{/if}

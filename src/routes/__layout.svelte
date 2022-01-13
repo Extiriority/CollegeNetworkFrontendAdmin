@@ -5,7 +5,7 @@
 
 <div class='flex flex-col h-screen'>
     <Header/>
-    <main class="h-full text-center">
+    <main class="overflow-hidden flex flex-col h-full">
         <slot/>
     </main>
 </div>

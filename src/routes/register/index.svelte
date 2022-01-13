@@ -1,6 +1,6 @@
 <script>
     import rest from '/src/helpers/rest/index.ts';
-  import { authConfig } from '/src/helpers/shared/configs.ts';
+    import { authConfig } from '/src/helpers/shared/configs.ts';
 
     let firstName, lastName, email, password;
 
