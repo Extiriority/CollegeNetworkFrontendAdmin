@@ -40,6 +40,19 @@
 		});
 	});
 
+	const deleteUser = async () => {
+		await rest.delete(`delete_user/${user}`,
+			baseConfig
+		).then(() => {
+			window.location = '/';
+		}).catch(err => {
+			if (err.response) {
+				console.log(err.response.status);
+			}
+		});
+	};
+
+
 	function getAge(dateString) {
 		let today = new Date();
 		let birthDate = new Date(dateString);
@@ -84,6 +97,10 @@
 					<label class='text-xl'>{age}</label>
 				</div>
 			</div>
+		<button
+			class='w-full mt-10 py-2 px-4 bg-red-600 shadow-red-400 text-white font-semibold rounded-full shadow-md hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-75'
+			on:click={deleteUser}>Delete user
+		</button>
 		</div>
 	</div>
 </div>

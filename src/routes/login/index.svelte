@@ -1,11 +1,12 @@
 <script>
     import rest from "/src/helpers/rest/index.ts";
     import { authenticated } from "/src/helpers/shared/stores";
-    import { authConfig } from '/src/helpers/shared/configs.ts';
+    import { authConfig, baseConfig } from '/src/helpers/shared/configs.ts';
 
     let email = null, password;
     let auth
     let validation
+    let isAdmin
 
     authenticated.subscribe(a => auth = a);
 
@@ -14,14 +15,42 @@
         await rest.post('login',
             json,
             authConfig
-        ).then(response => {
-            if (response.status === 200)
-                authenticated.set(true);
-                window.location = '/'
+        ).then(() => {
+            rest.get('user',
+              baseConfig
+            ).then(response => {
+                if (response.status === 200) {
+                    const content = response.data;
+                    isAdmin = content.isAdmin
+                    if (isAdmin !== false) {
+                        authenticated.set(true);
+                        window.location = '/'
+                    } else {
+                        fetch('http://localhost:8000/api/logout', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            credentials: 'include',
+                        })
+                        validation = true
+                        authenticated.set(false);
+                    }
+                }
+            })
         }).catch(err => {
             console.log(err)
             validation = true
         })
+    }
+
+
+    const logout = async () => {
+        await fetch('http://localhost:8000/api/logout', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            credentials: 'include',
+        })
+        authenticated.set(false);
+        window.location = '/login'
     }
 </script>
 
@@ -30,7 +59,7 @@
     <div class="max-w-md w-full space-y-8">
         <form on:submit|preventDefault={login} class="rounded-lg shadow-2xl p-10 pl-20 pr-20 bg-white">
             <h2 class="mt-6 text-3xl font-extrabold text-gray-900">
-                Sign in
+                Sign in as Admin
             </h2>
             <div class="relative mt-12">
                 <input bind:value={email}
@@ -56,7 +85,7 @@
             <div>
                 {#if validation}
                     <span class='text-red-900'>
-                        email or password is wrong
+                        email / password is wrong or not an Admin
                     </span>
                 {/if}
             </div>

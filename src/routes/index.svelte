@@ -2,13 +2,11 @@
     import {onMount} from 'svelte';
     import rest from '../helpers/rest/index.ts';
 		import { baseConfig } from '../helpers/shared/configs.ts';
-		import Chat from "../components/Chat.svelte";
-		import Search from "../components/Search.svelte";
-		import Blog from "../components/Blog.svelte";
+		import UserList from "../components/UserList.svelte";
+		import PostList from "../components/PostList.svelte";
 
 		let firstName
 		let id
-    let errorMsg
 
     onMount(async () => {
         rest.get('user',
@@ -30,8 +28,7 @@
 
 <div class="flex h-full place-content-center bg-[url('src/resources/loginBackground.webp')]">
 			<div class='flex pt-20 fixed'>
-					<Chat sender={firstName}/>
-					<Blog userId={id}/>
-					<Search/>
+				<PostList/>
+				<UserList/>
 			</div>
 </div>

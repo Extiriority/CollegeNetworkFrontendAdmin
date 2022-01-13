@@ -6,7 +6,6 @@
 
     let auth = false;
     let message
-    let error
     let name
     authenticated.subscribe(a => auth = a);
 
